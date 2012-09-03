@@ -1,0 +1,13 @@
+require('json2ify')
+require('es5-shimify')
+require('jqueryify')
+require('lib/jquery-ui-1.8.17.custom.min')
+require('lib/jquery.multiselect.min')
+require('lib/jquery.multiselect.filter.min')
+
+require('spine')
+require('spine/lib/local')
+require('spine/lib/ajax')
+require('spine/lib/manager')
+require('spine/lib/route')
+require('spine/lib/tmpl')

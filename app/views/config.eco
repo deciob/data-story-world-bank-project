@@ -1,0 +1,15 @@
+<h3><a href="#">Colourise country labels on Histogram</a></h3>
+<div id="colourize_country_labels">
+    <p>Choose the background colours for the country labels on the histogram. Useful for keeping track of the current visualised pattern after changing indicator. Please note that this setting is only enabled from the stand-alone histogram.</p>
+    <button title="" value="diverge" class="btn btn-green">Diverging</button>
+    <button title="" value="seq" class="btn btn-blue">Sequential</button>
+    <button title="" value="black" class="btn btn-black">Black</button>
+</div>
+
+<h3><a href="#">Map Colours</a></h3>
+<div id="map-colour-config">
+    <p>Adjust map highlight colours</p>
+    <div id="stop-slider"></div>
+    <input type="text" id="lower-colour" class="colour" />
+    <input type="text" id="upper-colour" class="colour" />
+</div>

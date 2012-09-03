@@ -1,0 +1,10 @@
+
+<button value="continents" id="pie_georeg" class="btn btn-green">Geo regions</button>
+<button value="income_groups" id="pie_ecoreg" class="btn btn-green">Economic regions</button>
+<div id="pie_wrapper" class="pie">
+    <svg id="pie1-svg" />
+</div> 
+<h2 class="no_data_info">No data</h2>
+<h3 class="svg-title"></h3>
+
+<div class="annotation"></div>

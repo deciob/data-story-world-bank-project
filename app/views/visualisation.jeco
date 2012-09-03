@@ -1,0 +1,1 @@
+<li title="<%= @ttitle %>" class="item"><img src="/static/<%= @icon %>" alt="<%= @name %>" /></li>

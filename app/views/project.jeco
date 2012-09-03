@@ -1,0 +1,3 @@
+<li class="item" title="<%= @description %>">
+    <a href="#<%= @hashURL() %><% if @snapshots and @snapshots.length > 0: %>/0<% end %>"><%= @name %></a>
+</li>

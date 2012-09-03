@@ -1,0 +1,18 @@
+<div class="combo_wrapper">
+<h3 class="svg-title"></h3>
+    <div id="histo_wrapper" class="histo combo">
+        <svg id="histo-svg-combo" class="combo"/>
+    </div>
+    <div id="pie_wrapper" class="pie combo">
+        <svg id="pie-svg" class="combo"/>
+    </div>
+</div>
+
+<section class="vis-config">
+    <div>
+        <select id="country_selector" title="Country picker" multiple="multiple" name="country_picker" size="5">
+        </select>
+    </div>
+</section>
+
+<div class="annotation"></div>

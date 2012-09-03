@@ -1,0 +1,5 @@
+<% for snap, i in @project.snapshots: %>
+<li class="item <% if @page == i: %>active<% end %>">
+    <a href="#<%= @project.hashURL() %>/<%= i %>"><%= snap.name %></a>
+</li>
+<% end %>

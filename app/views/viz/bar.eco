@@ -1,0 +1,24 @@
+
+<div id="bar_wrapper" class="bar">
+<% if @state?.dataSortOrder: %>
+  <% if @state.dataSortOrder == 'asc': %>
+    <p id="bar-selection-info">First 15 countries</p>
+    <button id="bar-selection" class="btn btn-blue">Invert selection</button>
+  <% else: %>
+    <p id="bar-selection-info">Last 15 countries</p>
+    <button id="bar-selection" class="btn btn-green">Invert selection</button>
+  <% end %>
+<% else: %>
+  <% if @bar.dataSortOrder == 'asc': %>
+    <p id="bar-selection-info">First 15 countries</p>
+    <button id="bar-selection" class="btn btn-blue">Invert selection</button>
+  <% else: %>
+    <p id="bar-selection-info">Last 15 countries</p>
+    <button id="bar-selection" class="btn btn-green">Invert selection</button>
+  <% end %>
+<% end %>
+</div>
+    <svg id="<%= @id_viz %>" />
+ 
+
+<div class="annotation"></div>

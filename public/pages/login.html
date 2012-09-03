@@ -1,0 +1,33 @@
+<article id="login-form-wrapper">
+     <header>
+         <h1>Login</h1>
+     </header>
+     <section class="form-intro">                   
+       <p>Phasellus nisi purus, congue aliquet hendrerit id, ornare eget elit. Phasellus hendrerit, mauris ut varius sagittis, libero odio venenatis ipsum, vel euismod lorem mi vel odio.</p>
+     </section><!--form-intro-->
+     <section id="form-main">
+    	<p class="validateTips">All form fields are required.</p>
+    	<form id="login-form">
+        	<fieldset>
+        	    <div class="form-row">
+            		<label for="name-email">Username or Email:</label>
+            		<input type="text"  id="name-email" name="name">
+        		</div><!--form-row-->                       
+        		<div class="form-row">
+            		<label for="password">Password:</label>
+            		<input type="password"  value="" id="password" name="password">
+        		</div><!--form-row-->
+        		<label class="login-remember"><input type="checkbox" id="remember_me" name="remember_me" checked="checked">&nbsp; remember me</label>
+        
+                <input type="submit"  value="Log in" id="login-btn" class="btn btn-blue btn-bigger" />   
+                <p class="forgot-pass-link"><a href="#">Forgot password?</a></p>             	
+        		
+        	</fieldset>
+    	</form>     
+    </section><!--form-main-->
+    <footer class="dialog-footer">
+    	    <div class="dialog-related-actions">
+    	        <h3>Don't have an account? <a class="btn btn-green btn-with-icon" id="go-to-signup-form" href="pages/signup.html" rel="account-dialog"><span class="ui-icon"></span>Sign up</a></h3>
+    	    </div>
+    </footer><!--dialog-footer-->
+</article><!--#login-form-wrapper-->      

@@ -1,0 +1,24 @@
+<h2 class="parallel_tip">Please select a number of indicators from the selector in the configuration section</h2>
+<h3 class="parallel_tip">This visualization is not tied to the currently selected indicator</h3>
+<p class="parallel_tip parallel_tip_attention">Attention! Please note that comparing data here with different units and/or scales of measurement might not make sense.</p>
+<p class="parallel_tip">About <a href="http://eagereyes.org/techniques/parallel-coordinates" target="_blank">Parallel coordinates</a></p>
+
+<img id="parallel_loader" src="/static/images/ajax-loader.gif" alt="..." style="display:none;"/>
+
+<div id="parallel_wrapper" class="parallel">
+    <span id="parallell_main_label">Hover over the indicator id labels to see the full name</span>
+</div> 
+
+<svg id="parallel-svg"  class="parallel"/>
+
+<section class="vis-config">
+    <div>
+        <select id="ind_selector" title="Indicator picker" multiple="multiple" name="indicator_picker" size="5">
+            <% for ind in @indicators: %>
+            <option value="<%= ind.id %>"><%= ind.name %></option>
+            <% end %>
+        </select>
+    </div> 
+</section>
+
+<div class="annotation"></div>

@@ -1,0 +1,23 @@
+<article id="edit-project-wrapper">
+    <header>
+        <h1>Edit Project</h1>
+    </header>
+    <section class="form-intro">                   
+       
+    </section>
+    <section id="form-main">   
+    	<form id="signup-form">
+            <fieldset>
+        	<div class="form-row">
+            	    <label for="project-title">Title:</label>
+            	    <input type="text" id="project-title" name="project-title" value="<%= @name %>" />
+        	</div>
+                <div class="form-row">
+            	    <label for="project-desc">Description:</label>
+            	    <textarea id="project-desc" name="project-desc"><%= @description %></textarea>
+                </div>
+                <input type="submit" value="Save Project" id="save-project-btn" class="btn btn-green btn-bigger" />
+            </fieldset>
+    	</form>
+    </section>
+</article>

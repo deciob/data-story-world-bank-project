@@ -1,0 +1,190 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>App</title>
+  <meta name="description" content="This is a tool for exploring data and for building data driven stories; focused on the World Bank Climate Change Indicators.">
+  <meta name="author" content="Decio Battaglia, Kevin Mahoney and Xiaoying Riley">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="shortcut icon" href="/static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/libs/modernizr-2.5.3.min.js"></script>
+  {% if debug %}
+  <script src="http://localhost:9294/application.js" type="text/javascript" charset="utf-8"></script>  
+  {% else %}
+  <script src="/static/application.js" type="text/javascript" charset="utf-8"></script>  
+  {% endif %}
+  <script type="text/javascript" charset="utf-8">
+    var jQuery  = require("jqueryify");
+    var exports = this;
+    jQuery(function(){
+      var App = require("index");
+      exports.app = new App({el: $("#app"), userid: {{ user.id or "null" }}});
+    });
+  </script>
+</head>
+
+<body id="app">
+  <div id="wrapper">
+    <header id="header">
+       <div id="header-inner">
+           <h1 id="site-name"><a href="/"><img class="site-logo" src="/static/images/logo.png" alt="Data Visualization"/><span>Data Story</span></a></h1>
+       </div><!--#header-inner-->
+       <nav id="app-top-nav">
+           <ul>
+              <li><a href="/">Home</a></li>
+              {% if user %}
+              <li><a id="logout-link" href="#" rel="account-dialog" title="Click to log out">{{ user.email }}</a></li>
+              {% else %}
+              <li><a id="login-link" href="#" rel="account-dialog" title="Your email address will not be visible to other users and we will not use it to contact you.">Login with BrowserID</a></li>
+              {% endif %}
+           </ul>
+       </nav>
+
+    </header><!--#header-->
+    
+    <div id="main" role="main">
+
+       <!-- VISUALISATION -->
+       <div id="visualization-wrapper">
+            <div id="visualization-wrapper-inner">
+                <nav id="visualization-list">
+                    <ul class="items"></ul>
+                </nav>
+                <article id="visualization-widget" class="initial">
+                    <header>
+                        <h1 id="visualization-name">
+                            <span title="Click to edit. 'Update Snapshot' to save changes." class="name"></span>
+                            <span id="blowup" class="ui-icon" title="Full Screen">Full Screen</span>
+                            <span id="close-snapshot" class="ui-icon ui-icon-close" title="Exit">close</span>
+                        </h1>
+                    </header>
+                    <h3 id="svg-title" class="metadata"></h3>
+                    <section class="visualization-content"></section>
+                    <footer> 
+                        <a id="configbtn" href="#" title="Toggle Configurations">Toggle Configurations</a>
+                        <div id="terms" class="metadata"><a href="http://www.worldbank.org/terms-datasets" target="_blank"> Terms of use</a></div>
+                        <div id="svg-source" class="metadata"></div>
+                        <div class="metadata">Data refer to the most recent year available.</div>
+                    </footer>
+                    <div id="snapshot-nav">
+                        <span class="prev-snapshot"><a href="#">Prev</a></span>
+                        <span class="next-snapshot"><a href="#">Next</a></span>
+                    </div>
+                </article>
+            </div><!--//#visualization-wrapper-inner-->
+        </div><!--#visualization-wrapper-->
+    
+        <div id="side-widgets-wrapper">
+
+            <!-- INDICATORS -->
+            <article id="indicator-list-widget">
+                <header><h1>Indicators</h1></header> 
+                
+                <section id="indicator-filter-section">    
+                <input type="search" name="indicator-filter" placeholder="Filter indicators here..." />  
+                </section>
+                <section id="indicator-list-section">                         
+                    <ul class="items"></ul>
+                </section><!--#indicator-list-section-->
+                              
+            </article><!--#indicator-list-widget-->      
+            
+            <!-- PROJECTS -->
+            <article id="project-list-widget">
+                <header><h1>Projects</h1></header>
+                <section id="all-projects">
+                    <div id="local-projects" class="project-list">
+                        <h2 id="local-projects-title" title="Projects stored locally offline"><span class="ui-icon ui-icon-triangle-1-e"></span>Local Projects</h2>
+                        <div class="project-dropdown">
+                            <button id="new-local-project" class="btn btn-red btn-with-icon"><span class="ui-icon"></span>New Project</button>
+                            <ul class="items"></ul>
+                        </div>
+                    </div><!--#local-projects-->
+                    <div id="account-projects" class="project-list">
+                        {% if user %}
+                        <h2 id="account-projects-title" title="Projects stored online in account"><span class="ui-icon ui-icon-triangle-1-e"></span>Account Projects</h2>
+                        <div class="project-dropdown">
+                            <button id="new-account-project" class="btn btn-red btn-with-icon"><span class="ui-icon"></span>New Project</button>
+                            <ul class="items"></ul>
+                        </div>
+                        {% else %}
+                        <div class="login-section">
+                        <p>Login with BrowserID to share projects.</p>
+                        <a id="project-login-link" href="#" class="btn btn-green" title="Your email address will not be visible to other users and we will not use it to contact you.">Login with BrowserID</a> 
+                        </div>               
+                        {% endif %}
+                        
+                    </div> <!--#account-projects-->                
+                </section>            
+                <section id="project-pages">
+                    <div id="pages">
+                        <h2 class="project-name"></h2>
+                        <div class="editable">
+                            <button id="edit-project">Edit</button>
+                            <button id="delete-project">Delete</button>
+                            <button id="add-page-button" class="btn btn-blue btn-with-icon"><span class="ui-icon"></span>Add Snapshot</button>
+                            <button id="update-page-button" class="btn btn-green btn-with-icon "><span class="ui-icon ui-icon-refresh"></span>Update Snapshot</button>
+                        </div>
+                        <ul class="items"></ul>
+                    </div>
+                    <div id="share-buttons" style="display: none">
+                        <h3>Share This Project</h3>
+                        <a href="#" class="facebook"><img src="/static/images/share/facebook.png" alt="Share project on Facebook"></a>
+                        <a href="#" class="twitter"><img src="/static/images/share/twitter.png" alt="Share project on Twitter"></a>
+                    </div>
+                </section>            
+            </article><!--#project-list-widget-->
+            
+        </div><!--#side-widgets-wrapper-->
+        
+        
+         <!-- CONFIGURATION -->
+         <article id="visualization-config-widget" class="hidden">
+             <header><h1>Configure<span id="close-config" class="ui-icon ui-icon-close " title="Exit">close</span></h1></header>
+             <section>
+                <div id="config-accordion">
+                </div>
+             </section>             
+         </article><!--//visualization-config-widget-->
+
+    </div><!--#main-->
+    
+
+    <footer id="app-footer">
+    
+    </footer><!--#app-footer-->
+    
+    <!-- UI Dialog (Sign up and Login) -->
+    <div id="account-window" class="hidden">
+    </div><!--#account-window--> 
+    
+    
+    <!-- UI Dialog (Edit Project) -->
+    <div id="project-window" class="hidden">
+    </div><!--#project-window--> 
+      
+  </div> <!--! end of #wrapper -->
+
+  <!-- start scripts-->
+  <script src="/static/js/blocker.js"></script>   
+  <script defer src="/static/js/plugins-app.js"></script><!--all the plugins -->
+  <script defer src="/static/js/script-app.js"></script>  
+  <script src="https://browserid.org/include.js" type="text/javascript"></script>
+  <script src="/static/js/login.js"></script>
+  <!-- end scripts-->
+  <!--Google Analytics-->
+  <script>
+    var _gaq=[['_setAccount','UA-30024041-2'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
+  
+</body>
+</html>

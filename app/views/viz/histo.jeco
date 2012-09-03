@@ -1,0 +1,15 @@
+
+<div id="histo_wrapper" class="histo"></div> 
+<svg id="histo-svg" class="histo"/>
+
+<section class="vis-config">
+    <div>
+        <select id="country_selector" title="Country picker" multiple="multiple" name="country_picker" size="5">
+        </select>
+    </div>
+    <div>
+        
+    </div>
+</section>
+
+<div class="annotation"></div>
